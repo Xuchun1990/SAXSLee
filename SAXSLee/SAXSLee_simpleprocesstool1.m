@@ -148,7 +148,11 @@ for i = 1:numel(hdl)
         dtname = get(hdl(i), 'tag');
         t = strfind(dtname, ' ');
         dtname(t) = '_';
+        try
         ind = APS_getfileindex(dtname);
+        catch
+            ind = [];
+        end
         if ~isempty(SPECfile)
             c = get_fileinfo(SPECfile, dtname, isLinecut);
             SL_out.info{k} = c;
